@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0A0A08" />
+  <title>Aafir Marwane — Architecture &amp; 3D Visualization</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#0A0A08',
+            surface: '#121210',
+            card: '#181815',
+            ivory: '#F0EDE6',
+            stone: '#9A978E',
+            hairline: '#272723',
+            gold: '#C8A97E',
+            goldDim: '#877152',
+          },
+          fontFamily: {
+            display: ['"Bebas Neue"', 'sans-serif'],
+            serif: ['"Cormorant Garamond"', 'serif'],
+            mono: ['"DM Mono"', 'monospace'],
+            sans: ['"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-obsidian text-ivory selection:bg-gold selection:text-obsidian">
+
+  <!-- ══ NAVBAR ══ -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 border-b border-transparent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <a href="#hero" class="font-display text-2xl tracking-widest text-ivory flex items-center gap-1 shrink-0">
+        AM<span class="text-gold">.</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7">
+        <a href="#services" class="font-mono text-xs tracking-widest uppercase text-stone hover:text-gold transition-colors">Services</a>
+        <a href="#projects" class="font-mono text-xs tracking-widest uppercase text-stone hover:text-gold transition-colors">Projects</a>
+        <a href="#career" class="font-mono text-xs tracking-widest uppercase text-stone hover:text-gold transition-colors">Career</a>
+        <a href="#contact" class="font-mono text-xs tracking-widest uppercase text-stone hover:text-gold transition-colors">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3 shrink-0">
+        <div class="flex items-center bg-card border border-hairline rounded-lg p-0.5 font-mono text-[11px]">
+          <a href="index.html" class="px-2.5 py-1 rounded-md text-stone hover:text-ivory transition-colors">FR</a>
+          <a href="en.html" class="px-2.5 py-1 rounded-md bg-gold text-obsidian font-medium">EN</a>
+        </div>
+
+        <a href="#request" class="hidden sm:inline-flex items-center gap-1.5 bg-gold hover:bg-[#b8976b] text-obsidian font-mono text-xs tracking-wider uppercase px-4 py-2 rounded-lg transition-colors font-medium">
+          Quote ↗
+        </a>
+
+        <button type="button" id="mobileMenuBtn" aria-label="Menu" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-hairline bg-card text-ivory hover:border-gold transition-colors">
+          <svg id="menuIconOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+          <svg id="menuIconClose" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileDrawer" class="hidden md:hidden bg-surface/95 backdrop-blur-xl border-b border-hairline px-4 py-5 space-y-3">
+      <a href="#services" class="mobile-nav-link block font-mono text-xs tracking-widest uppercase text-ivory hover:text-gold py-2 border-b border-hairline/60">01 — Services</a>
+      <a href="#projects" class="mobile-nav-link block font-mono text-xs tracking-widest uppercase text-ivory hover:text-gold py-2 border-b border-hairline/60">02 — Projects</a>
+      <a href="#career" class="mobile-nav-link block font-mono text-xs tracking-widest uppercase text-ivory hover:text-gold py-2 border-b border-hairline/60">03 — Career &amp; Tools</a>
+      <a href="#request" class="mobile-nav-link block font-mono text-xs tracking-widest uppercase text-gold py-2 border-b border-hairline/60">04 — Request a Quote ↗</a>
+      <a href="#contact" class="mobile-nav-link block font-mono text-xs tracking-widest uppercase text-stone hover:text-gold py-2">05 — Contact</a>
+    </div>
+  </header>
+
+  <!-- ══ HERO WITH SLIDING IMAGES ══ -->
+  <section id="hero" class="relative min-h-[100svh] flex flex-col justify-between overflow-hidden pt-20">
+    <div class="absolute inset-0 z-0 overflow-hidden bg-obsidian">
+      <img src="images/villa-contemporaine.jpg" fetchpriority="high" decoding="async" alt="Contemporary Moroccan Villa" class="hero-slide is-active w-full h-full object-cover object-center" />
+      <img src="images/interior-living.jpg" decoding="async" alt="Double-Height Living Room" class="hero-slide w-full h-full object-cover object-center" />
+      <img src="images/pool-terrace.jpg" decoding="async" alt="Pool Terrace at Dusk" class="hero-slide w-full h-full object-cover object-center" />
+      <img src="images/riad-contemporain.jpg" decoding="async" alt="Contemporary Riad Courtyard" class="hero-slide w-full h-full object-cover object-center" />
+      <div class="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/80 to-obsidian/35"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/60"></div>
+    </div>
+
+    <canvas id="heroCanvas" class="absolute inset-0 w-full h-full z-10 pointer-events-none"></canvas>
+
+    <!-- Availability & Slider Controls -->
+    <div class="relative z-20 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between pt-4 gap-3">
+      <div class="inline-flex items-center gap-2 bg-card/75 backdrop-blur-md border border-hairline rounded-full px-3 py-1.5">
+        <button type="button" id="heroPrevBtn" aria-label="Previous slide" class="text-stone hover:text-gold transition-colors px-1">‹</button>
+        <div class="flex items-center gap-1.5">
+          <button type="button" aria-label="Slide 1" class="hero-dot w-7 h-1.5 rounded-full bg-gold transition-all"></button>
+          <button type="button" aria-label="Slide 2" class="hero-dot w-2.5 h-1.5 rounded-full bg-ivory/35 hover:bg-ivory/60 transition-all"></button>
+          <button type="button" aria-label="Slide 3" class="hero-dot w-2.5 h-1.5 rounded-full bg-ivory/35 hover:bg-ivory/60 transition-all"></button>
+          <button type="button" aria-label="Slide 4" class="hero-dot w-2.5 h-1.5 rounded-full bg-ivory/35 hover:bg-ivory/60 transition-all"></button>
+        </div>
+        <button type="button" id="heroNextBtn" aria-label="Next slide" class="text-stone hover:text-gold transition-colors px-1">›</button>
+      </div>
+
+      <div class="inline-flex items-center gap-2.5 bg-card/80 backdrop-blur-md border border-goldDim/50 rounded-full px-3.5 py-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-mono text-[10px] sm:text-[11px] tracking-widest uppercase text-ivory">Available · Rabat &amp; International</span>
+      </div>
+    </div>
+
+    <div class="relative z-20 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 my-auto py-12">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 font-mono text-xs tracking-[0.22em] uppercase text-gold mb-4">
+          <span class="w-6 h-px bg-gold"></span>
+          <span>Architecture · 3D Visualization · Generative AI</span>
+        </div>
+
+        <h1 class="font-display text-6xl sm:text-8xl lg:text-[7.5rem] leading-[0.86] tracking-tight mb-6">
+          <span class="block text-ivory">AAFIR</span>
+          <span class="block font-stroke">MARWANE</span>
+        </h1>
+
+        <p class="font-serif italic text-xl sm:text-2xl text-stone leading-relaxed border-l-2 border-gold pl-4 mb-8 max-w-xl">
+          From technical drawings to <span class="text-gold not-italic">photorealistic visualization</span> — full APS → PE cycle for your projects.
+        </p>
+
+        <div class="flex flex-wrap gap-3">
+          <a href="#projects" class="inline-flex items-center gap-2 bg-gold hover:bg-[#b8976b] text-obsidian font-mono text-xs tracking-widest uppercase px-6 py-3.5 rounded-xl font-medium transition-all active:scale-[0.98]">
+            <span>Explore Projects</span>
+            <span>→</span>
+          </a>
+          <a href="#request" class="inline-flex items-center gap-2 bg-card/80 backdrop-blur-md hover:border-gold text-ivory border border-hairline font-mono text-xs tracking-widest uppercase px-6 py-3.5 rounded-xl transition-all active:scale-[0.98]">
+            <span>Request a Quote ↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative z-20 border-t border-hairline/80 bg-obsidian/75 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-3 divide-x divide-hairline">
+        <div class="py-4 pr-3 sm:px-6">
+          <div class="font-display text-2xl sm:text-4xl text-ivory leading-none">5<span class="text-gold">+</span></div>
+          <div class="font-mono text-[10px] sm:text-xs tracking-widest uppercase text-stone mt-1">Years Exp.</div>
+        </div>
+        <div class="py-4 px-3 sm:px-6">
+          <div class="font-display text-2xl sm:text-4xl text-ivory leading-none">6</div>
+          <div class="font-mono text-[10px] sm:text-xs tracking-widest uppercase text-stone mt-1">Offices · MA &amp; BE</div>
+        </div>
+        <div class="py-4 pl-3 sm:px-6">
+          <div class="font-display text-2xl sm:text-4xl text-ivory leading-none">APS<span class="text-gold">→</span>PE</div>
+          <div class="font-mono text-[10px] sm:text-xs tracking-widest uppercase text-stone mt-1">Full Cycle</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ MARQUEE ══ -->
+  <div class="marquee-wrap bg-gold text-obsidian py-2.5 overflow-hidden border-y border-goldDim/30">
+    <div class="marquee-track font-display text-lg tracking-widest uppercase">
+      <span class="px-6 flex items-center gap-6">Execution Drawings <span class="text-xs opacity-40">✦</span></span>
+      <span class="px-6 flex items-center gap-6">3D Visualization <span class="text-xs opacity-40">✦</span></span>
+      <span class="px-6 flex items-center gap-6">ArchiCAD <span class="text-xs opacity-40">✦</span></span>
+      <span class="px-6 flex items-center gap-6">Lumion <span class="text-xs opacity-40">✦</span></span>
+      <span class="px-6 flex items-center gap-6">3DS Max Corona <span class="text-xs opacity-40">✦</span></span>
+      <span class="px-6 flex items-center gap-6">Building Permits · Rokhas <span class="text-xs opacity-40">✦</span></span>
+      <span class="px-6 flex items-center gap-6">Generative AI <span class="text-xs opacity-40">✦</span></span>
+      <span class="px-6 flex items-center gap-6">Villas · Residential · Retail <span class="text-xs opacity-40">✦</span></span>
+      <span class="px-6 flex items-center gap-6">Execution Drawings <span class="text-xs opacity-40">✦</span></span>
+      <span class="px-6 flex items-center gap-6">3D Visualization <span class="text-xs opacity-40">✦</span></span>
+      <span class="px-6 flex items-center gap-6">ArchiCAD <span class="text-xs opacity-40">✦</span></span>
+      <span class="px-6 flex items-center gap-6">Lumion <span class="text-xs opacity-40">✦</span></span>
+      <span class="px-6 flex items-center gap-6">3DS Max Corona <span class="text-xs opacity-40">✦</span></span>
+      <span class="px-6 flex items-center gap-6">Building Permits · Rokhas <span class="text-xs opacity-40">✦</span></span>
+      <span class="px-6 flex items-center gap-6">Generative AI <span class="text-xs opacity-40">✦</span></span>
+      <span class="px-6 flex items-center gap-6">Villas · Residential · Retail <span class="text-xs opacity-40">✦</span></span>
+    </div>
+  </div>
+
+  <!-- ══ SERVICES ══ -->
+  <section id="services" class="bg-surface py-16 sm:py-24 border-b border-hairline">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 reveal">
+        <div>
+          <div class="flex items-center gap-2.5 font-mono text-xs tracking-[0.22em] uppercase text-gold mb-2">
+            <span class="w-4 h-px bg-gold"></span>
+            <span>01 — What I do</span>
+          </div>
+          <h2 class="font-display text-5xl sm:text-6xl tracking-tight text-ivory leading-none">SERVICES</h2>
+        </div>
+        <p class="font-serif italic text-lg sm:text-xl text-stone max-w-md">
+          From concept to <span class="text-gold not-italic">final deliverable</span> — every phase mastered.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="reveal group bg-card border border-hairline hover:border-goldDim rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1">
+          <div class="w-11 h-11 rounded-xl bg-gold/10 border border-goldDim/50 flex items-center justify-center text-gold mb-5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M3 21L21 3M3 21h6M3 21v-6M9 3h12v12"/></svg>
+          </div>
+          <h3 class="font-display text-2xl tracking-wide text-ivory mb-2">Technical Plans</h3>
+          <p class="text-sm text-stone leading-relaxed mb-5">Full production of APS, APD, PC, and PE phases. Precise, code-compliant 2D drawings crafted in ArchiCAD.</p>
+          <div class="flex flex-wrap gap-1.5 font-mono text-[10px] uppercase tracking-wider text-goldDim">
+            <span class="px-2 py-1 rounded border border-hairline">APS</span>
+            <span class="px-2 py-1 rounded border border-hairline">APD</span>
+            <span class="px-2 py-1 rounded border border-hairline">PC</span>
+            <span class="px-2 py-1 rounded border border-hairline">PE</span>
+            <span class="px-2 py-1 rounded border border-hairline">ArchiCAD</span>
+          </div>
+        </div>
+
+        <div class="reveal group bg-card border border-hairline hover:border-goldDim rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1">
+          <div class="w-11 h-11 rounded-xl bg-gold/10 border border-goldDim/50 flex items-center justify-center text-gold mb-5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="2" y="19" width="20" height="2" rx="1"/><rect x="4" y="10" width="2" height="9"/><rect x="11" y="10" width="2" height="9"/><rect x="18" y="10" width="2" height="9"/><path d="M2 10l10-7 10 7"/></svg>
+          </div>
+          <h3 class="font-display text-2xl tracking-wide text-ivory mb-2">3D Visualization</h3>
+          <p class="text-sm text-stone leading-relaxed mb-5">Photorealistic interior and exterior renders, animations, and 3D walkthroughs with Lumion and 3DS Max Corona.</p>
+          <div class="flex flex-wrap gap-1.5 font-mono text-[10px] uppercase tracking-wider text-goldDim">
+            <span class="px-2 py-1 rounded border border-hairline">Lumion</span>
+            <span class="px-2 py-1 rounded border border-hairline">3DS Max</span>
+            <span class="px-2 py-1 rounded border border-hairline">Corona</span>
+            <span class="px-2 py-1 rounded border border-hairline">3D Video</span>
+          </div>
+        </div>
+
+        <div class="reveal group bg-card border border-hairline hover:border-goldDim rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1">
+          <div class="w-11 h-11 rounded-xl bg-gold/10 border border-goldDim/50 flex items-center justify-center text-gold mb-5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M9 8V6a3 3 0 016 0v2"/><circle cx="9" cy="14" r="1.2" fill="currentColor"/><circle cx="15" cy="14" r="1.2" fill="currentColor"/><path d="M8 18h8"/></svg>
+          </div>
+          <h3 class="font-display text-2xl tracking-wide text-ivory mb-2">Generative AI</h3>
+          <p class="text-sm text-stone leading-relaxed mb-5">AI-augmented visualization workflows to elevate photorealism, lighting studies, and rapid concept iteration.</p>
+          <div class="flex flex-wrap gap-1.5 font-mono text-[10px] uppercase tracking-wider text-goldDim">
+            <span class="px-2 py-1 rounded border border-hairline">Img2Img</span>
+            <span class="px-2 py-1 rounded border border-hairline">Upscaling</span>
+            <span class="px-2 py-1 rounded border border-hairline">AI Retouch</span>
+          </div>
+        </div>
+
+        <div class="reveal group bg-card border border-hairline hover:border-goldDim rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1">
+          <div class="w-11 h-11 rounded-xl bg-gold/10 border border-goldDim/50 flex items-center justify-center text-gold mb-5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
+          </div>
+          <h3 class="font-display text-2xl tracking-wide text-ivory mb-2">Permits &amp; Files</h3>
+          <p class="text-sm text-stone leading-relaxed mb-5">Building permit preparation and submission via Rokhas and CRI, plus site boards and commercial brochures.</p>
+          <div class="flex flex-wrap gap-1.5 font-mono text-[10px] uppercase tracking-wider text-goldDim">
+            <span class="px-2 py-1 rounded border border-hairline">Rokhas</span>
+            <span class="px-2 py-1 rounded border border-hairline">CRI</span>
+            <span class="px-2 py-1 rounded border border-hairline">Brochures</span>
+          </div>
+        </div>
+
+        <div class="reveal group bg-card border border-hairline hover:border-goldDim rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1">
+          <div class="w-11 h-11 rounded-xl bg-gold/10 border border-goldDim/50 flex items-center justify-center text-gold mb-5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M2 20h20M4 20V10M20 20V10M8 20v-6h8v6M4 10l8-8 8 8"/></svg>
+          </div>
+          <h3 class="font-display text-2xl tracking-wide text-ivory mb-2">Site Supervision</h3>
+          <p class="text-sm text-stone leading-relaxed mb-5">On-site coordination and construction follow-up, bridging technical teams and project owners.</p>
+          <div class="flex flex-wrap gap-1.5 font-mono text-[10px] uppercase tracking-wider text-goldDim">
+            <span class="px-2 py-1 rounded border border-hairline">Coordination</span>
+            <span class="px-2 py-1 rounded border border-hairline">Inspection</span>
+            <span class="px-2 py-1 rounded border border-hairline">Reporting</span>
+          </div>
+        </div>
+
+        <div class="reveal group bg-card border border-hairline hover:border-goldDim rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1">
+          <div class="w-11 h-11 rounded-xl bg-gold/10 border border-goldDim/50 flex items-center justify-center text-gold mb-5">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M20 9V7a2 2 0 00-2-2H6a2 2 0 00-2 2v2"/><path d="M2 11a2 2 0 012 2v3h16v-3a2 2 0 012-2V9a2 2 0 00-2-2"/><path d="M6 16v2M18 16v2"/></svg>
+          </div>
+          <h3 class="font-display text-2xl tracking-wide text-ivory mb-2">Interior Architecture</h3>
+          <p class="text-sm text-stone leading-relaxed mb-5">Concept studies, bespoke material palettes, 3D interior modeling, and editorial presentation boards.</p>
+          <div class="flex flex-wrap gap-1.5 font-mono text-[10px] uppercase tracking-wider text-goldDim">
+            <span class="px-2 py-1 rounded border border-hairline">Concept</span>
+            <span class="px-2 py-1 rounded border border-hairline">Materials</span>
+            <span class="px-2 py-1 rounded border border-hairline">Presentation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROJECTS ══ -->
+  <section id="projects" class="bg-obsidian py-16 sm:py-24 border-b border-hairline">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 reveal">
+        <div>
+          <div class="flex items-center gap-2.5 font-mono text-xs tracking-[0.22em] uppercase text-gold mb-2">
+            <span class="w-4 h-px bg-gold"></span>
+            <span>02 — Selected Works</span>
+          </div>
+          <h2 class="font-display text-5xl sm:text-6xl tracking-tight text-ivory leading-none">PROJECTS</h2>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2" id="projectFilters">
+          <button type="button" data-filter="all" class="filter-btn active px-4 py-2 rounded-xl font-mono text-xs uppercase tracking-wider bg-gold text-obsidian font-medium transition-all">All (6)</button>
+          <button type="button" data-filter="villa" class="filter-btn px-4 py-2 rounded-xl font-mono text-xs uppercase tracking-wider bg-card text-stone border border-hairline hover:border-goldDim hover:text-ivory transition-all">Villas (2)</button>
+          <button type="button" data-filter="residential" class="filter-btn px-4 py-2 rounded-xl font-mono text-xs uppercase tracking-wider bg-card text-stone border border-hairline hover:border-goldDim hover:text-ivory transition-all">Residential (2)</button>
+          <button type="button" data-filter="interior" class="filter-btn px-4 py-2 rounded-xl font-mono text-xs uppercase tracking-wider bg-card text-stone border border-hairline hover:border-goldDim hover:text-ivory transition-all">Interior &amp; Riad (2)</button>
+        </div>
+      </div>
+
+      <div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    </div>
+  </section>
+
+  <!-- ══ CAREER & TOOLS ══ -->
+  <section id="career" class="bg-surface py-16 sm:py-24 border-b border-hairline">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 reveal">
+        <div>
+          <div class="flex items-center gap-2.5 font-mono text-xs tracking-[0.22em] uppercase text-gold mb-2">
+            <span class="w-4 h-px bg-gold"></span>
+            <span>03 — Career &amp; Expertise</span>
+          </div>
+          <h2 class="font-display text-5xl sm:text-6xl tracking-tight text-ivory leading-none">PORTFOLIO</h2>
+        </div>
+
+        <div class="inline-flex bg-card border border-hairline rounded-xl p-1 self-start">
+          <button type="button" id="tabExp" class="career-tab px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider bg-gold text-obsidian font-medium transition-all">Experience (6)</button>
+          <button type="button" id="tabSkills" class="career-tab px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-wider text-stone hover:text-ivory transition-all">Software &amp; Stack</button>
+        </div>
+      </div>
+
+      <div id="panelExp" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="bg-card border border-goldDim/60 rounded-2xl p-6">
+          <div class="flex items-start justify-between gap-2 mb-2">
+            <h3 class="font-display text-2xl text-ivory tracking-wide">Yamé Architecture Studio</h3>
+            <span class="font-mono text-[11px] text-gold bg-gold/10 border border-goldDim/40 px-2 py-0.5 rounded shrink-0">Current</span>
+          </div>
+          <div class="font-mono text-xs text-gold uppercase tracking-wider mb-3">02.2026 — Present · Rabat</div>
+          <ul class="space-y-1.5 text-sm text-stone">
+            <li class="flex gap-2"><span class="text-goldDim">→</span><span>High-profile multidisciplinary studio — Rabat.</span></li>
+            <li class="flex gap-2"><span class="text-goldDim">→</span><span>Technical plans &amp; 3D visualization (APS → PE).</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-card border border-hairline hover:border-goldDim/50 transition-colors rounded-2xl p-6">
+          <h3 class="font-display text-2xl text-ivory tracking-wide mb-2">YL Architecte</h3>
+          <div class="font-mono text-xs text-gold uppercase tracking-wider mb-3">04.2025 — 01.2026 · Belgium</div>
+          <ul class="space-y-1.5 text-sm text-stone">
+            <li class="flex gap-2"><span class="text-goldDim">→</span><span>Urban planning permits &amp; regulatory compliance.</span></li>
+            <li class="flex gap-2"><span class="text-goldDim">→</span><span>Execution drawings (PE) &amp; photorealistic renders.</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-card border border-hairline hover:border-goldDim/50 transition-colors rounded-2xl p-6">
+          <h3 class="font-display text-2xl text-ivory tracking-wide mb-2">NK Studio</h3>
+          <div class="font-mono text-xs text-gold uppercase tracking-wider mb-3">03.2024 — 04.2025 · Rabat</div>
+          <ul class="space-y-1.5 text-sm text-stone">
+            <li class="flex gap-2"><span class="text-goldDim">→</span><span>Full cycle: APS → APD → PC → PE.</span></li>
+            <li class="flex gap-2"><span class="text-goldDim">→</span><span>Rendered videos (Corona / Lumion) &amp; Rokhas + CRI.</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-card border border-hairline hover:border-goldDim/50 transition-colors rounded-2xl p-6">
+          <h3 class="font-display text-2xl text-ivory tracking-wide mb-2">BY Studio Architecture</h3>
+          <div class="font-mono text-xs text-gold uppercase tracking-wider mb-3">10.2022 — 01.2024 · Rabat</div>
+          <ul class="space-y-1.5 text-sm text-stone">
+            <li class="flex gap-2"><span class="text-goldDim">→</span><span>APS → PE pipeline for residential &amp; commercial.</span></li>
+            <li class="flex gap-2"><span class="text-goldDim">→</span><span>Marketing collateral &amp; photorealistic rendering.</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-card border border-hairline hover:border-goldDim/50 transition-colors rounded-2xl p-6">
+          <h3 class="font-display text-2xl text-ivory tracking-wide mb-2">Atelier Spirit Architecture</h3>
+          <div class="font-mono text-xs text-gold uppercase tracking-wider mb-3">02.2022 — 10.2022 · Khénifra</div>
+          <ul class="space-y-1.5 text-sm text-stone">
+            <li class="flex gap-2"><span class="text-goldDim">→</span><span>Site supervision · 2D/3D plans · Interior design.</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-card border border-hairline hover:border-goldDim/50 transition-colors rounded-2xl p-6">
+          <h3 class="font-display text-2xl text-ivory tracking-wide mb-2">Noura Lahnaoui Architects</h3>
+          <div class="font-mono text-xs text-gold uppercase tracking-wider mb-3">01.2021 — 12.2021 · Khénifra</div>
+          <ul class="space-y-1.5 text-sm text-stone">
+            <li class="flex gap-2"><span class="text-goldDim">→</span><span>APS/APD/PC/PE studies, 2D/3D plans &amp; Rokhas files.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="panelSkills" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-card border border-hairline rounded-2xl p-6">
+          <p class="font-serif italic text-xl text-ivory leading-relaxed border-l-2 border-gold pl-4 mb-5">
+            Specialized in architecture, I master the full project lifecycle — from <span class="text-gold not-italic">concept to execution plans</span> — with ArchiCAD at the core.
+          </p>
+          <p class="text-sm text-stone leading-relaxed mb-6">
+            I combine rigorous technical drafting, high-end photorealistic visualization, and generative AI workflows to deliver projects that exceed visual and technical expectations.
+          </p>
+          <div class="flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-wider text-stone">
+            <span class="px-3 py-1.5 rounded-lg border border-hairline">APS → PE</span>
+            <span class="px-3 py-1.5 rounded-lg border border-hairline">Rokhas &amp; CRI</span>
+            <span class="px-3 py-1.5 rounded-lg border border-hairline">Photorealism</span>
+            <span class="px-3 py-1.5 rounded-lg border border-hairline">BIM / 3D</span>
+          </div>
+        </div>
+
+        <div class="bg-card border border-hairline rounded-2xl p-6 space-y-4">
+          <div class="skill-row in-view" style="--target-width: 100%">
+            <div class="flex justify-between font-mono text-xs uppercase tracking-wider mb-1.5"><span class="text-gold font-medium">ArchiCAD (Primary)</span><span class="text-stone">100%</span></div>
+            <div class="h-1.5 bg-hairline rounded-full overflow-hidden"><div class="skill-fill h-full bg-gold rounded-full"></div></div>
+          </div>
+          <div class="skill-row in-view" style="--target-width: 85%">
+            <div class="flex justify-between font-mono text-xs uppercase tracking-wider mb-1.5"><span class="text-ivory">Lumion 3D</span><span class="text-stone">85%</span></div>
+            <div class="h-1.5 bg-hairline rounded-full overflow-hidden"><div class="skill-fill h-full bg-ivory rounded-full"></div></div>
+          </div>
+          <div class="skill-row in-view" style="--target-width: 85%">
+            <div class="flex justify-between font-mono text-xs uppercase tracking-wider mb-1.5"><span class="text-gold font-medium">Generative AI</span><span class="text-stone">85%</span></div>
+            <div class="h-1.5 bg-hairline rounded-full overflow-hidden"><div class="skill-fill h-full bg-gold rounded-full"></div></div>
+          </div>
+          <div class="skill-row in-view" style="--target-width: 80%">
+            <div class="flex justify-between font-mono text-xs uppercase tracking-wider mb-1.5"><span class="text-ivory">AutoCAD &amp; SketchUp</span><span class="text-stone">80%</span></div>
+            <div class="h-1.5 bg-hairline rounded-full overflow-hidden"><div class="skill-fill h-full bg-ivory rounded-full"></div></div>
+          </div>
+          <div class="skill-row in-view" style="--target-width: 80%">
+            <div class="flex justify-between font-mono text-xs uppercase tracking-wider mb-1.5"><span class="text-ivory">Photoshop</span><span class="text-stone">80%</span></div>
+            <div class="h-1.5 bg-hairline rounded-full overflow-hidden"><div class="skill-fill h-full bg-ivory rounded-full"></div></div>
+          </div>
+          <div class="skill-row in-view" style="--target-width: 70%">
+            <div class="flex justify-between font-mono text-xs uppercase tracking-wider mb-1.5"><span class="text-ivory">3DS Max · Corona</span><span class="text-stone">70%</span></div>
+            <div class="h-1.5 bg-hairline rounded-full overflow-hidden"><div class="skill-fill h-full bg-ivory rounded-full"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SERVICE REQUEST ══ -->
+  <section id="request" class="bg-obsidian py-16 sm:py-24 border-b border-hairline">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="reveal mb-10">
+        <div class="flex items-center gap-2.5 font-mono text-xs tracking-[0.22em] uppercase text-gold mb-2">
+          <span class="w-4 h-px bg-gold"></span>
+          <span>04 — Collaboration</span>
+        </div>
+        <h2 class="font-display text-5xl sm:text-6xl tracking-tight text-ivory leading-none mb-3">SERVICE REQUEST</h2>
+        <p class="font-serif italic text-lg sm:text-xl text-stone">
+          Architect or client? Describe your project and receive a tailored quote within <span class="text-gold not-italic">48h</span>.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-10 reveal">
+        <div class="bg-card border border-goldDim/70 rounded-xl p-4">
+          <div class="font-display text-2xl text-gold leading-none mb-1">01</div>
+          <div class="font-display text-lg text-ivory tracking-wide">Brief</div>
+          <p class="text-xs text-stone mt-1">Building type &amp; scope.</p>
+        </div>
+        <div class="bg-card border border-hairline rounded-xl p-4">
+          <div class="font-display text-2xl text-gold/40 leading-none mb-1">02</div>
+          <div class="font-display text-lg text-ivory tracking-wide">48h Quote</div>
+          <p class="text-xs text-stone mt-1">Detailed offer &amp; timeline.</p>
+        </div>
+        <div class="bg-card border border-hairline rounded-xl p-4">
+          <div class="font-display text-2xl text-gold/40 leading-none mb-1">03</div>
+          <div class="font-display text-lg text-ivory tracking-wide">Production</div>
+          <p class="text-xs text-stone mt-1">Drawings, 3D &amp; iterations.</p>
+        </div>
+        <div class="bg-card border border-hairline rounded-xl p-4">
+          <div class="font-display text-2xl text-gold/40 leading-none mb-1">04</div>
+          <div class="font-display text-lg text-ivory tracking-wide">Delivery</div>
+          <p class="text-xs text-stone mt-1">Validated final files.</p>
+        </div>
+      </div>
+
+      <div class="mb-6 reveal">
+        <label class="block font-mono text-[11px] uppercase tracking-widest text-goldDim mb-3">Project Type</label>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5" id="typeSelector">
+          <button type="button" data-type="Villa" class="type-btn active bg-gold/10 border border-gold text-gold rounded-xl p-3 text-center transition-all"><span class="block font-mono text-xs uppercase tracking-wider">Villa</span></button>
+          <button type="button" data-type="Building" class="type-btn bg-card border border-hairline text-stone hover:text-ivory rounded-xl p-3 text-center transition-all"><span class="block font-mono text-xs uppercase tracking-wider">Building</span></button>
+          <button type="button" data-type="Commercial" class="type-btn bg-card border border-hairline text-stone hover:text-ivory rounded-xl p-3 text-center transition-all"><span class="block font-mono text-xs uppercase tracking-wider">Commercial</span></button>
+          <button type="button" data-type="Interior" class="type-btn bg-card border border-hairline text-stone hover:text-ivory rounded-xl p-3 text-center transition-all"><span class="block font-mono text-xs uppercase tracking-wider">Interior</span></button>
+          <button type="button" data-type="3D Render" class="type-btn bg-card border border-hairline text-stone hover:text-ivory rounded-xl p-3 text-center transition-all"><span class="block font-mono text-xs uppercase tracking-wider">3D Render</span></button>
+          <button type="button" data-type="Other" class="type-btn bg-card border border-hairline text-stone hover:text-ivory rounded-xl p-3 text-center transition-all"><span class="block font-mono text-xs uppercase tracking-wider">Other</span></button>
+        </div>
+      </div>
+
+      <form id="requestForm" name="project-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="bg-card border border-hairline rounded-2xl p-6 sm:p-8 space-y-5 reveal">
+        <input type="hidden" name="form-name" value="project-request" />
+        <input type="hidden" name="project-type" id="formProjectType" value="Villa" />
+        <p class="hidden"><label>Bot field: <input name="bot-field" /></label></p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-mono text-[11px] uppercase tracking-widest text-goldDim mb-1.5">Full Name</label>
+            <input id="formName" name="name" type="text" required placeholder="Your name" class="w-full bg-obsidian border border-hairline focus:border-gold rounded-xl px-4 py-3 text-sm text-ivory outline-none transition-colors" />
+          </div>
+          <div>
+            <label class="block font-mono text-[11px] uppercase tracking-widest text-goldDim mb-1.5">Email or WhatsApp</label>
+            <input id="formContact" name="contact" type="text" required placeholder="+212 6XX XXX XXX" class="w-full bg-obsidian border border-hairline focus:border-gold rounded-xl px-4 py-3 text-sm text-ivory outline-none transition-colors" />
+          </div>
+          <div>
+            <label class="block font-mono text-[11px] uppercase tracking-widest text-goldDim mb-1.5">Role</label>
+            <select id="formRole" name="role" class="w-full bg-obsidian border border-hairline focus:border-gold rounded-xl px-4 py-3 text-sm text-ivory outline-none transition-colors">
+              <option value="Architect">Architect / Studio</option>
+              <option value="Client">Project Owner / Client</option>
+              <option value="Developer">Real Estate Developer</option>
+              <option value="Engineering">Engineering Firm</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-mono text-[11px] uppercase tracking-widest text-goldDim mb-1.5">Requested Phase</label>
+            <select id="formPhase" name="phase" class="w-full bg-obsidian border border-hairline focus:border-gold rounded-xl px-4 py-3 text-sm text-ivory outline-none transition-colors">
+              <option value="Full Cycle APS → PE">Full Cycle APS → PE</option>
+              <option value="3D Visualization">3D Visualization</option>
+              <option value="APS + APD">APS + APD</option>
+              <option value="Building Permit (PC)">Building Permit (PC)</option>
+              <option value="Execution Drawings (PE)">Execution Drawings (PE)</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block font-mono text-[11px] uppercase tracking-widest text-goldDim mb-1.5">Project Description</label>
+          <textarea id="formDesc" name="description" rows="4" placeholder="Area, number of levels, location, target timeline..." class="w-full bg-obsidian border border-hairline focus:border-gold rounded-xl px-4 py-3 text-sm text-ivory outline-none transition-colors resize-y"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-gold hover:bg-[#b8976b] text-obsidian font-mono text-xs tracking-widest uppercase py-4 rounded-xl font-medium transition-all active:scale-[0.99]">
+          Send Request ↗
+        </button>
+      </form>
+
+      <div id="formSuccess" class="hidden bg-card border border-goldDim rounded-2xl p-8 text-center space-y-4">
+        <div class="w-12 h-12 rounded-full bg-gold/15 border border-gold flex items-center justify-center text-gold mx-auto">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h3 class="font-display text-3xl text-gold">Request Received</h3>
+        <p id="formSummaryText" class="text-sm text-stone max-w-md mx-auto"></p>
+        <div class="flex flex-wrap justify-center gap-3 pt-2">
+          <a id="whatsappLaunch" href="https://wa.me/212602152534" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-gold text-obsidian font-mono text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl font-medium">Send via WhatsApp ↗</a>
+          <button type="button" id="resetFormBtn" class="inline-flex items-center gap-2 border border-hairline hover:border-gold text-ivory font-mono text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl">New Request</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT FOOTER ══ -->
+  <footer id="contact" class="bg-surface py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-8">
+        <div class="flex items-center gap-2.5 font-mono text-xs tracking-[0.22em] uppercase text-gold mb-2">
+          <span class="w-4 h-px bg-gold"></span>
+          <span>05 — Contact</span>
+        </div>
+        <h2 class="font-display text-5xl sm:text-6xl tracking-tight text-ivory leading-none mb-3">LET'S WORK TOGETHER</h2>
+        <p class="font-serif italic text-xl text-stone">Available for <span class="text-gold not-italic">freelance</span> commissions — Morocco &amp; International.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+        <a href="tel:+212602152534" class="group bg-card border border-hairline hover:border-goldDim rounded-2xl p-5 flex items-center justify-between transition-colors">
+          <div>
+            <span class="block font-mono text-[10px] uppercase tracking-widest text-goldDim mb-1">Phone / WhatsApp</span>
+            <span class="text-base text-ivory font-medium">+212 602 152 534</span>
+          </div>
+          <span class="text-goldDim group-hover:text-gold transition-colors">→</span>
+        </a>
+        <a href="mailto:Marwaneaafir@proton.me" class="group bg-card border border-hairline hover:border-goldDim rounded-2xl p-5 flex items-center justify-between transition-colors">
+          <div>
+            <span class="block font-mono text-[10px] uppercase tracking-widest text-goldDim mb-1">Email</span>
+            <span class="text-base text-ivory font-medium">Marwaneaafir@proton.me</span>
+          </div>
+          <span class="text-goldDim group-hover:text-gold transition-colors">→</span>
+        </a>
+        <a href="https://behance.net/marwaneaafir1" target="_blank" rel="noopener" class="group bg-card border border-hairline hover:border-goldDim rounded-2xl p-5 flex items-center justify-between transition-colors">
+          <div>
+            <span class="block font-mono text-[10px] uppercase tracking-widest text-goldDim mb-1">Behance</span>
+            <span class="text-base text-ivory font-medium">behance.net/marwaneaafir1</span>
+          </div>
+          <span class="text-goldDim group-hover:text-gold transition-colors">↗</span>
+        </a>
+      </div>
+
+      <div class="pt-6 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div class="font-display text-2xl tracking-wider text-ivory">AAFIR <span class="font-stroke">MARWANE</span></div>
+        <div class="font-mono text-[11px] uppercase tracking-widest text-stone text-center sm:text-right">Architecture · 3D Visualization · Generative AI · Rabat</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══ PROJECT DETAIL MODAL ══ -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-obsidian/90 backdrop-blur-lg p-0 sm:p-6 overflow-y-auto" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-5xl bg-surface border border-hairline sm:rounded-2xl overflow-hidden shadow-2xl my-auto max-h-[100svh] sm:max-h-[90vh] flex flex-col">
+      <div class="flex items-center justify-between px-5 py-4 border-b border-hairline bg-card shrink-0">
+        <div>
+          <span id="modalCategory" class="font-mono text-[10px] uppercase tracking-widest text-gold block"></span>
+          <h3 id="modalTitle" class="font-display text-2xl sm:text-3xl text-ivory leading-none mt-0.5"></h3>
+        </div>
+        <button type="button" id="closeModalBtn" aria-label="Close modal" class="w-10 h-10 rounded-xl border border-hairline bg-obsidian hover:border-gold text-ivory flex items-center justify-center transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="overflow-y-auto flex-1 grid grid-cols-1 lg:grid-cols-12">
+        <div class="lg:col-span-7 bg-obsidian flex flex-col border-b lg:border-b-0 lg:border-r border-hairline">
+          <div id="galleryStage" class="relative aspect-[4/3] w-full bg-card overflow-hidden select-none">
+            <img id="modalMainImg" src="" alt="" decoding="async" class="w-full h-full object-cover transition-opacity duration-200" />
+            <button type="button" id="prevImgBtn" aria-label="Previous image" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-obsidian/75 backdrop-blur-md border border-hairline hover:border-gold text-ivory flex items-center justify-center transition-all">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button type="button" id="nextImgBtn" aria-label="Next image" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-obsidian/75 backdrop-blur-md border border-hairline hover:border-gold text-ivory flex items-center justify-center transition-all">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none">
+              <span id="modalImgCaption" class="bg-obsidian/80 backdrop-blur-md border border-hairline/80 rounded-lg px-3 py-1 font-mono text-[11px] text-ivory truncate"></span>
+              <span id="modalImgCounter" class="bg-obsidian/80 backdrop-blur-md border border-hairline/80 rounded-lg px-2.5 py-1 font-mono text-[11px] text-gold shrink-0">01 / 04</span>
+            </div>
+          </div>
+          <div id="modalThumbnails" class="flex gap-2.5 p-3.5 overflow-x-auto no-scrollbar bg-surface border-t border-hairline"></div>
+        </div>
+
+        <div class="lg:col-span-5 p-5 sm:p-6 flex flex-col justify-between gap-6">
+          <div class="space-y-5">
+            <div>
+              <span class="font-mono text-[10px] uppercase tracking-widest text-goldDim block mb-1">Location</span>
+              <div id="modalLocation" class="text-sm text-ivory font-medium"></div>
+            </div>
+            <div>
+              <span class="font-mono text-[10px] uppercase tracking-widest text-goldDim block mb-1">Project Brief</span>
+              <p id="modalDesc" class="text-sm text-stone leading-relaxed"></p>
+            </div>
+            <div class="grid grid-cols-2 gap-3 pt-2 border-t border-hairline">
+              <div>
+                <span class="font-mono text-[10px] uppercase tracking-widest text-goldDim block mb-1">Phases</span>
+                <div id="modalPhases" class="font-mono text-xs text-ivory"></div>
+              </div>
+              <div>
+                <span class="font-mono text-[10px] uppercase tracking-widest text-goldDim block mb-1">Scale</span>
+                <div id="modalScale" class="font-mono text-xs text-ivory"></div>
+              </div>
+            </div>
+            <div>
+              <span class="font-mono text-[10px] uppercase tracking-widest text-goldDim block mb-2">Software Used</span>
+              <div id="modalTools" class="flex flex-wrap gap-1.5"></div>
+            </div>
+          </div>
+          <button type="button" id="modalQuoteBtn" class="w-full bg-gold hover:bg-[#b8976b] text-obsidian font-mono text-xs tracking-widest uppercase py-3.5 rounded-xl font-medium transition-colors">
+            Request Similar Project ↗
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/projects.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
